@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="LayoutBookView :: head"></head>
+<body>
+    <nav th:replace="LayoutBookView :: header"></nav>
+
+    <div class="container main-content form">
+        <div class="row">
+            <form action="#" th:action="@{/book/save}" th:object="${book}"
+                  method="POST" novalidate="novalidate">
+                <input type="hidden" th:field="*{bookId}" />
+                <div class="form-group">
+                    <label>Book Name</label>
+                    <input type="text" class="form-control"
+                           th:field="*{bookName}" th:errorclass="field-error" />
+                    <em th:if="${#fields.hasErrors('bookName')}" th:errors="*{bookName}"></em>
+                </div>
+                <div class="form-group">
+                    <label>Book Content</label>
+                    <input type="text" class="form-control"
+                           th:field="*{bookContent}" th:errorclass="field-error" />
+                    <em th:if="${#fields.hasErrors('bookContent')}" th:errors="*{bookContent}"></em>
+                </div>
+                <button type="submit" class="btn btn-primary"> Save Infomation </button>
+            </form>
+        </div>
+    </div><!-- /.container -->
+
+    <footer th:replace="LayoutBookView :: footer"></footer>
+
+</body>
+</html>
